@@ -21,7 +21,7 @@
         /* Header Styles */
         header {
             background: #ffffff;
-            padding: 15px 20px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,28 +65,41 @@
             cursor: pointer;
         }
 
-        /* Container Layout */
+        /* Main Container Layout - Auto adjusting for PC and Mobile */
         .container {
-            max-width: 480px;
+            max-width: 1200px; /* PC එකේ උපරිම පළල */
             margin: 0 auto;
             padding: 20px;
         }
 
         .section {
-            margin-bottom: 45px;
+            margin-bottom: 60px;
         }
 
-        /* Rounded Images Match Screenshot */
-        .rounded-img {
-            width: 100%;
+        /* --- Flexible Hero Section (PC and Mobile Responsive) --- */
+        .hero-block {
+            display: flex;
+            flex-direction: column; /* Mobile වලදී එක යට එක */
+            gap: 30px;
+            align-items: center;
+            background: #fbeee9;
+            padding: 30px;
             border-radius: 35px;
-            display: block;
-            margin-bottom: 25px;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-height: 400px;
             object-fit: cover;
+            border-radius: 25px;
+        }
+
+        .hero-content {
+            text-align: center;
         }
 
         h1 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 900;
             text-transform: uppercase;
             line-height: 1.2;
@@ -95,12 +108,12 @@
         }
 
         p {
-            font-size: 15px;
+            font-size: 16px;
             color: #444;
             margin-bottom: 25px;
         }
 
-        /* Dark Green Buttons */
+        /* Buttons */
         .btn {
             display: inline-block;
             background-color: #1b4332;
@@ -112,20 +125,42 @@
             font-size: 15px;
             border: none;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* Safari Cards Style */
+        .btn:hover {
+            background-color: #2d6a4f;
+        }
+
+        /* Responsive Rounded Images for Content */
+        .rounded-img {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 35px;
+            display: block;
+            margin-bottom: 25px;
+            object-fit: cover;
+        }
+
+        /* --- Grid Layout for Cards (Auto switching) --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile වලදී පේළියට 1යි */
+            gap: 20px;
+        }
+
         .card {
             background: #fbeee9;
             border-radius: 28px;
             padding: 15px;
-            margin-bottom: 25px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
         .card img {
             width: 100%;
+            height: 220px;
+            object-fit: cover;
             border-radius: 22px;
             display: block;
             margin-bottom: 15px;
@@ -136,10 +171,21 @@
             text-transform: uppercase;
             font-weight: 900;
             letter-spacing: 0.5px;
-            padding-bottom: 5px;
+        }
+
+        /* Double Layout Column for Intro Section */
+        .intro-block {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
         /* Forms Layout */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -181,8 +227,13 @@
         footer {
             background: #000;
             color: #fff;
-            padding: 45px 20px;
+            padding: 60px 20px;
             text-align: center;
+        }
+
+        footer .footer-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         footer h4 {
@@ -201,10 +252,10 @@
         footer ul {
             list-style: none;
             margin-bottom: 35px;
-        }
-
-        footer ul li {
-            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         footer ul li a {
@@ -232,10 +283,54 @@
             text-decoration: none;
             font-size: 16px;
         }
+
+        /* =======================================================
+           💻 PC/DESKTOP STYLES (Screen size width 768px or above)
+           ======================================================= */
+        @media (min-width: 768px) {
+            /* Hero එක PC එකේදී දෙපැත්තට බෙදේ */
+            .hero-block {
+                flex-direction: row;
+                text-align: left;
+                padding: 50px;
+            }
+            .hero-img {
+                width: 50%;
+                max-height: 450px;
+            }
+            .hero-content {
+                width: 50%;
+                text-align: left;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            /* Intro එක PC එකේදී දෙපැත්තට බෙදේ */
+            .intro-block {
+                flex-direction: row-reverse;
+                align-items: center;
+            }
+            .intro-block .intro-text, .intro-block .rounded-img {
+                width: 50%;
+            }
+
+            /* සයිටින් කාඩ්ස් 7 PC එකේදී පේළියට 3 හෝ 4 බැගින් හැදේ */
+            .grid-layout {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-layout {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
     <header>
         <div class="logo-area">
             <div class="logo-box">WILD CAT<br>SAFARI</div>
@@ -246,139 +341,169 @@
 
     <div class="container">
         
+        <!-- Section 1: Responsive Hero Cover -->
         <div class="section">
-            <img src="hero.jpg" alt="Sri Lankan Leopard Cover" class="rounded-img">
-            <h1>Discover the Majesty of Sri Lanka's Wild Cats</h1>
-            <p>Join us on exclusive safaris to witness the elusive Sri Lankan Leopard and the rare Fishing Cat in their untouched natural environments, blending adventure with conservation.</p>
-            <a href="#booking-form" class="btn">Start Your Safari</a>
+            <div class="hero-block">
+                <img src="hero.jpg" alt="Sri Lankan Leopard Cover" class="hero-img">
+                <div class="hero-content">
+                    <h1>Discover the Majesty of Sri Lanka's Wild Cats</h1>
+                    <p>Join us on exclusive safaris to witness the elusive Sri Lankan Leopard and the rare Fishing Cat in their untouched natural environments, blending adventure with conservation.</p>
+                    <a href="#booking-form" class="btn">Start Your Safari</a>
+                </div>
+            </div>
         </div>
 
+        <!-- Section 2: Intro (Side-by-Side on PC) -->
         <div class="section">
-            <h1>Experience the Thrill of Sri Lanka's Wild Cats</h1>
-            <p>At Wildcat-safari, we are dedicated to connecting wildlife lovers with the breathtaking beauty of Sri Lanka's leopards and fishing cats, fostering conservation through unforgettable safari experiences.</p>
-            <img src="leopard.jpg" alt="Leopard Close Up" class="rounded-img">
+            <div class="intro-block">
+                <img src="leopard.jpg" alt="Leopard Close Up" class="rounded-img">
+                <div class="intro-text">
+                    <h1>Experience the Thrill of Sri Lanka's Wild Cats</h1>
+                    <p>At Wildcat-safari, we are dedicated to connecting wildlife lovers with the breathtaking beauty of Sri Lanka's leopards and fishing cats, fostering conservation through unforgettable safari experiences.</p>
+                </div>
+            </div>
         </div>
 
+        <!-- Section 3: Sightings Grid (Auto Grid Responsive) -->
         <div class="section">
-            <h1>Explore Sri Lanka's Wild: Expert Guides, Top Wildlife Sightings</h1>
-            <p>Witness Yala's incredible wildlife through our lens. From majestic leopards to gentle giants, our expert guides capture the moments that make every safari unforgettable.</p>
+            <h1 style="text-align: center; margin-bottom: 10px;">Explore Sri Lanka's Wild: Expert Guides, Top Wildlife Sightings</h1>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px auto;">Witness Yala's incredible wildlife through our lens. From majestic leopards to gentle giants, our expert guides capture the moments that make every safari unforgettable.</p>
             
-            <div class="card">
-                <img src="deer.jpg" alt="Peaceful Deer Experience">
-                <h3>Peaceful Deer Experience</h3>
-            </div>
+            <div class="grid-layout">
+                <!-- Card 1 -->
+                <div class="card">
+                    <img src="deer.jpg" alt="Peaceful Deer Experience">
+                    <h3>Peaceful Deer Experience</h3>
+                </div>
 
-            <div class="card">
-                <img src="leopard.jpg" alt="Majestic Leopard">
-                <h3>Majestic Leopard</h3>
-            </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <img src="leopard.jpg" alt="Majestic Leopard">
+                    <h3>Majestic Leopard</h3>
+                </div>
 
-            <div class="card">
-                <img src="elephant.jpg" alt="Elephant Encounters">
-                <h3>Elephant Encounters</h3>
-            </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <img src="elephant.jpg" alt="Elephant Encounters">
+                    <h3>Elephant Encounters</h3>
+                </div>
 
-            <div class="card">
-                <img src="bird.jpg" alt="Bird Watching Paradise">
-                <h3>Bird Watching Paradise</h3>
-            </div>
+                <!-- Card 4 -->
+                <div class="card">
+                    <img src="bird.jpg" alt="Bird Watching Paradise">
+                    <h3>Bird Watching Paradise</h3>
+                </div>
 
-            <div class="card">
-                <img src="photography.jpg" alt="Wildlife Photography Tour">
-                <h3>Wildlife Photography Tour</h3>
-            </div>
+                <!-- Card 5 -->
+                <div class="card">
+                    <img src="photography.jpg" alt="Wildlife Photography Tour">
+                    <h3>Wildlife Photography Tour</h3>
+                </div>
 
-            <div class="card">
-                <img src="bear.jpg" alt="Bear Walk">
-                <h3>Bear Walk</h3>
-            </div>
+                <!-- Card 6 -->
+                <div class="card">
+                    <img src="bear.jpg" alt="Bear Walk">
+                    <h3>Bear Walk</h3>
+                </div>
 
-            <div class="card">
-                <img src="crocodile.jpg" alt="Reptile Watch">
-                <h3>Reptile Watch</h3>
-            </div>
+                <!-- Card 7 -->
+                <div class="card">
+                    <img src="crocodile.jpg" alt="Reptile Watch">
+                    <h3>Reptile Watch</h3>
+                </div>
 
-            <div class="card">
-                <img src="jeep.jpg" alt="Safari Adventure">
-                <h3>Safari Adventure</h3>
+                <!-- Card 8 -->
+                <div class="card">
+                    <img src="jeep.jpg" alt="Safari Adventure">
+                    <h3>Safari Adventure</h3>
+                </div>
             </div>
         </div>
 
-        <div class="section" style="background: #fbeee9; padding: 25px; border-radius: 35px; text-align: center;">
-            <img src="leopard-cutout.png" alt="Leopard Cutout" style="width: 100%; max-width: 300px; display: block; margin: 0 auto 20px auto;">
-            <form style="text-align: left;">
-                <div class="form-inline">
+        <!-- Section 4: Middle Lead Form -->
+        <div class="section" style="background: #fbeee9; padding: 45px 25px; border-radius: 35px;">
+            <div class="form-container">
+                <img src="leopard-cutout.png" alt="Leopard Cutout" style="width: 100%; max-width: 250px; display: block; margin: 0 auto 20px auto;">
+                <form style="text-align: left;">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" required>
+                            <div class="form-subtext">First</div>
+                        </div>
+                        <div class="form-group" style="margin-top: 27px;">
+                            <input type="text" required>
+                            <div class="form-subtext">Last</div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label>Name *</label>
-                        <input type="text" required>
-                        <div class="form-subtext">First</div>
+                        <label>Email *</label>
+                        <input type="email" required>
                     </div>
-                    <div class="form-group" style="margin-top: 27px;">
-                        <input type="text" required>
-                        <div class="form-subtext">Last</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit</button>
-            </form>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit</button>
+                </form>
+            </div>
         </div>
 
-        <div id="booking-form" class="section" style="background: #ffffff; padding: 25px; border-radius: 35px; border: 1px solid #f0ede6;">
-            <h1 style="font-size: 22px; text-align: center;">Book Your Design Now...</h1>
-            <p style="text-align: center; font-size: 13px; margin-bottom: 20px;">Reserve your spot on our exclusive safaris with simple steps.</p>
-            
-            <form>
-                <div class="form-group">
-                    <label>Select Safari Type</label>
-                    <select>
-                        <option>Yala National Park Safari</option>
-                        <option>Wilpattu National Park Safari</option>
-                        <option>Udawalawe Elephant Safari</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" placeholder="Enter your full name">
-                </div>
-                <div class="form-group">
-                    <label>Your Phone</label>
-                    <input type="text" placeholder="Enter your phone number">
-                </div>
-                <div class="form-group">
-                    <label>Your Email</label>
-                    <input type="email" placeholder="Enter your email address">
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">Book Safari</button>
-            </form>
+        <!-- Section 5: Booking Form -->
+        <div id="booking-form" class="section" style="background: #ffffff; padding: 45px 25px; border-radius: 35px; border: 1px solid #f0ede6;">
+            <div class="form-container">
+                <h1 style="font-size: 24px; text-align: center;">Book Your Safari Now...</h1>
+                <p style="text-align: center; font-size: 14px; margin-bottom: 30px;">Reserve your spot on our exclusive safaris with simple steps.</p>
+                
+                <form>
+                    <div class="form-group">
+                        <label>Select Safari Type</label>
+                        <select>
+                            <option>Yala National Park Safari</option>
+                            <option>Wilpattu National Park Safari</option>
+                            <option>Udawalawe Elephant Safari</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Phone</label>
+                        <input type="text" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" placeholder="Enter your email address">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Book Safari</button>
+                </form>
+            </div>
         </div>
 
     </div>
 
+    <!-- Footer Section -->
     <footer>
-        <h4>Wild Cat Safari</h4>
-        <p>Experience the best wildlife tours in Sri Lanka. Fostering conservation through unforgettable safari experiences.</p>
-        
-        <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Tours</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Articles</a></li>
-        </ul>
+        <div class="footer-wrap">
+            <h4>Wild Cat Safari</h4>
+            <p>Experience the best wildlife tours in Sri Lanka. Fostering conservation through unforgettable safari experiences.</p>
+            
+            <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Tours</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Articles</a></li>
+            </ul>
 
-        <div class="social-icons">
-            <a href="#" class="social-icon">f</a>
-            <a href="#" class="social-icon">i</a>
-            <a href="#" class="social-icon">yt</a>
-            <a href="#" class="social-icon">tk</a>
-            <a href="#" class="social-icon">wa</a>
+            <div class="social-icons">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">i</a>
+                <a href="#" class="social-icon">yt</a>
+                <a href="#" class="social-icon">tk</a>
+                <a href="#" class="social-icon">wa</a>
+            </div>
+
+            <p style="font-size: 11px; color: #555;">&copy; 2026 Wildcat-safari. All rights reserved.<br>Responsive Edition optimized for Mobile & PC.</p>
         </div>
-
-        <p style="font-size: 11px; color: #555;">&copy; 2026 Wildcat-safari. All rights reserved.<br>Built and developed via GitHub Pages.</p>
     </footer>
 
 </body>
