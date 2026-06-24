@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Cat Safari - Premium Luxury Wildlife Experiences</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfbf7;
+            color: #1a2421;
+            line-height: 1.7;
+        }
+
+        header {
+            background: rgba(26, 36, 33, 0.98);
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            color: #dfb15b;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+        }
+
+        .menu-btn {
+            color: #fff;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* 1. HERO BACKGROUND IMAGE SECTION */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=1200') center/cover no-repeat;
+            height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero-section p {
+            font-size: 16px;
+            color: #f0f0f0;
+            max-width: 450px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background-color: #dfb15b;
+            color: #1a2421;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(223, 177, 91, 0.4);
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            color: #1a2421;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #dfb15b;
+            margin: 12px auto 30px auto;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 15px;
+            color: #55605d;
+            margin-bottom: 40px;
+        }
+
+        /* PREMIUM ASYMMETRIC CARDS WITH IMAGES */
+        .premium-card {
+            background: #ffffff;
+            border-radius: 0px 40px 0px 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 35px;
+            border: 1px solid #f0ede6;
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+        }
+
+        .premium-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #1a2421;
+            color: #dfb15b;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+        }
+
+        .card-content {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            color: #1a2421;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-content p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* BOOKING FORM */
+        .booking-section {
+            background: #1a2421;
+            color: #fff;
+            padding: 40px 25px;
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+
+        .booking-section h2 {
+            color: #dfb15b;
+            font-size: 24px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #bccec8;
+            margin-bottom: 7px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #dfb15b;
+            color: #1a2421;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #0d1311;
+            color: #8fa09b;
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand-logo">WildCat</a>
+        <div class="menu-btn">☰</div>
+    </header>
+
+    <!-- Background Image එකක් සහිත Hero Section -->
+    <div class="hero-section">
+        <h1>Untamed Luxury</h1>
+        <p>Embark on an elite safari journey through Sri Lanka's deepest jungles.</p>
+        <a href="#reserve" class="btn-gold">Reserve Experience</a>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Curated Safaris</h2>
+        <p class="intro-text">Handcrafted wildlife encounters for passionate explorers.</p>
+
+        <!-- 2. LEOPARD CARD IMAGE -->
+        <div class="premium-card">
+            <div class="card-img-wrapper">
+                <span class="card-badge">Most Popular</span>
+                <img src="https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=600" alt="Sri Lankan Leopard">
+            </div>
+            <div class="card-content">
+                <h3>The Leopard Majesty</h3>
+                <p>An intensive, guided deep-forest track focused entirely on discovering the Sri Lankan Leopard.</p>
+            </div>
+        </div>
+
+        <!-- 3. ELEPHANT CARD IMAGE -->
+        <div class="premium-card">
+            <div class="card-img-wrapper">
+                <span class="card-badge">Exclusive</span>
+                <img src="https://images.unsplash.com/photo-1581888227599-779811939961?w=600" alt="Sri Lankan Elephant">
+            </div>
+            <div class="card-content">
+                <h3>Elephant Encounters</h3>
+                <p>A majestic journey to observe Sri Lankan elephants in their natural habitats and iconic river crossings.</p>
+            </div>
+        </div>
+
+        <!-- 4. BIRD WATCHING CARD IMAGE -->
+        <div class="premium-card">
+            <div class="card-img-wrapper">
+                <span class="card-badge">Rare Birds</span>
+                <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600" alt="Tropical Birds">
+            </div>
+            <div class="card-content">
+                <h3>Bird Watching Paradise</h3>
+                <p>Explore endemic species and magnificent migratory flocks with Sri Lanka's top certified guides.</p>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div id="reserve" class="booking-section">
+            <h2>Secure Your Journey</h2>
+            <form>
+                <div class="form-group">
+                    <label>Select Experience</label>
+                    <select class="form-control" style="background-color: #1a2421; color: white;">
+                        <option>The Leopard Majesty</option>
+                        <option>Elephant Encounters</option>
+                        <option>Bird Watching Paradise</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" class="form-control" placeholder="+94 7X XXX XXXX">
+                </div>
+                <button type="submit" class="btn-submit">Request Invitation</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <h2>WILDCAT SAFARI</h2>
+        <p>&copy; 2026 WildCat Safari Luxury Ltd. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
