@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildcat-safari</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fdf5f2;
+            color: #111;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #f0ede6;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 45px;
+            height: 45px;
+            background: #000;
+            color: #dfb15b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 8px;
+            text-align: center;
+            border-radius: 6px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        /* Rounded Images Match Screenshot */
+        .rounded-img {
+            width: 100%;
+            border-radius: 35px;
+            display: block;
+            margin-bottom: 25px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        /* Dark Green Buttons */
+        .btn {
+            display: inline-block;
+            background-color: #1b4332;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Safari Cards Style */
+        .card {
+            background: #fbeee9;
+            border-radius: 28px;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 22px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 15px;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            padding-bottom: 5px;
+        }
+
+        /* Forms Layout */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-inline {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-inline .form-group {
+            flex: 1;
+        }
+
+        .form-subtext {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 15px;
+            color: #111;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        footer h4 {
+            text-transform: uppercase;
+            font-size: 18px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        footer ul {
+            list-style: none;
+            margin-bottom: 35px;
+        }
+
+        footer ul li {
+            margin-bottom: 12px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-box">WILD CAT<br>SAFARI</div>
+            <div class="brand-name">Wild Cat Safari</div>
+        </div>
+        <div class="menu-icon">☰</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="section">
+            <img src="hero.jpg" alt="Sri Lankan Leopard Cover" class="rounded-img">
+            <h1>Discover the Majesty of Sri Lanka's Wild Cats</h1>
+            <p>Join us on exclusive safaris to witness the elusive Sri Lankan Leopard and the rare Fishing Cat in their untouched natural environments, blending adventure with conservation.</p>
+            <a href="#booking-form" class="btn">Start Your Safari</a>
+        </div>
+
+        <div class="section">
+            <h1>Experience the Thrill of Sri Lanka's Wild Cats</h1>
+            <p>At Wildcat-safari, we are dedicated to connecting wildlife lovers with the breathtaking beauty of Sri Lanka's leopards and fishing cats, fostering conservation through unforgettable safari experiences.</p>
+            <img src="leopard.jpg" alt="Leopard Close Up" class="rounded-img">
+        </div>
+
+        <div class="section">
+            <h1>Explore Sri Lanka's Wild: Expert Guides, Top Wildlife Sightings</h1>
+            <p>Witness Yala's incredible wildlife through our lens. From majestic leopards to gentle giants, our expert guides capture the moments that make every safari unforgettable.</p>
+            
+            <div class="card">
+                <img src="deer.jpg" alt="Peaceful Deer Experience">
+                <h3>Peaceful Deer Experience</h3>
+            </div>
+
+            <div class="card">
+                <img src="leopard.jpg" alt="Majestic Leopard">
+                <h3>Majestic Leopard</h3>
+            </div>
+
+            <div class="card">
+                <img src="elephant.jpg" alt="Elephant Encounters">
+                <h3>Elephant Encounters</h3>
+            </div>
+
+            <div class="card">
+                <img src="bird.jpg" alt="Bird Watching Paradise">
+                <h3>Bird Watching Paradise</h3>
+            </div>
+
+            <div class="card">
+                <img src="photography.jpg" alt="Wildlife Photography Tour">
+                <h3>Wildlife Photography Tour</h3>
+            </div>
+
+            <div class="card">
+                <img src="bear.jpg" alt="Bear Walk">
+                <h3>Bear Walk</h3>
+            </div>
+
+            <div class="card">
+                <img src="crocodile.jpg" alt="Reptile Watch">
+                <h3>Reptile Watch</h3>
+            </div>
+
+            <div class="card">
+                <img src="jeep.jpg" alt="Safari Adventure">
+                <h3>Safari Adventure</h3>
+            </div>
+        </div>
+
+        <div class="section" style="background: #fbeee9; padding: 25px; border-radius: 35px; text-align: center;">
+            <img src="leopard-cutout.png" alt="Leopard Cutout" style="width: 100%; max-width: 300px; display: block; margin: 0 auto 20px auto;">
+            <form style="text-align: left;">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                        <div class="form-subtext">First</div>
+                    </div>
+                    <div class="form-group" style="margin-top: 27px;">
+                        <input type="text" required>
+                        <div class="form-subtext">Last</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit</button>
+            </form>
+        </div>
+
+        <div id="booking-form" class="section" style="background: #ffffff; padding: 25px; border-radius: 35px; border: 1px solid #f0ede6;">
+            <h1 style="font-size: 22px; text-align: center;">Book Your Design Now...</h1>
+            <p style="text-align: center; font-size: 13px; margin-bottom: 20px;">Reserve your spot on our exclusive safaris with simple steps.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label>Select Safari Type</label>
+                    <select>
+                        <option>Yala National Park Safari</option>
+                        <option>Wilpattu National Park Safari</option>
+                        <option>Udawalawe Elephant Safari</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Your Phone</label>
+                    <input type="text" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email" placeholder="Enter your email address">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Book Safari</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <h4>Wild Cat Safari</h4>
+        <p>Experience the best wildlife tours in Sri Lanka. Fostering conservation through unforgettable safari experiences.</p>
+        
+        <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Tours</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Articles</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">i</a>
+            <a href="#" class="social-icon">yt</a>
+            <a href="#" class="social-icon">tk</a>
+            <a href="#" class="social-icon">wa</a>
+        </div>
+
+        <p style="font-size: 11px; color: #555;">&copy; 2026 Wildcat-safari. All rights reserved.<br>Built and developed via GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
