@@ -16,9 +16,147 @@
             background-color: #fdf5f2;
             color: #111;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Header Styles */
+        /* =======================================================
+           🐆 1. ADVANCED CINEMATIC LEOPARD PRELOADER STYLES
+           ======================================================= */
+        #leopard-preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 99999;
+            overflow: hidden;
+        }
+
+        #leopard-preloader video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* සීරීම් පාරවල් (Claw Marks) සෑදීම */
+        .claw-marks {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 100001;
+            opacity: 0;
+        }
+
+        /* දිවියා හූරන සීරීම් පාරවල් 3 */
+        .claw-line {
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #dfb15b, #ff4500, transparent);
+            box-shadow: 0 0 15px #ff4500, 0 0 5px #dfb15b;
+            border-radius: 50%;
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+
+        /* දිවියා හූරන ක්ෂණයකින් සීරීම් පාරවල් මතු වීම */
+        .show-scratch .claw-marks {
+            opacity: 1;
+        }
+        .show-scratch .claw-line {
+            animation: scratch-down 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .show-scratch .claw-line:nth-child(2) { animation-delay: 0.1s; }
+        .show-scratch .claw-line:nth-child(3) { animation-delay: 0.2s; }
+
+        @keyframes scratch-down {
+            0% { transform: scaleY(0); opacity: 0; }
+            50% { transform: scaleY(1); opacity: 1; }
+            100% { transform: scaleY(1); opacity: 0; filter: blur(2px); }
+        }
+
+        /* තිරය මැදින් ඉරා දමන Overlay එක */
+        .scratch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            pointer-events: none;
+            z-index: 100000;
+            opacity: 0;
+        }
+
+        .show-overlay {
+            opacity: 1;
+        }
+
+        /* ඉරී යන දකුණු සහ වම් කොටස් දෙක (කළු තිරය) */
+        .scratch-part {
+            width: 50%;
+            height: 100%;
+            background-color: #000000;
+            position: relative;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* ✂️ රළු ලෙස ඉරී ගිය කඩදාසි හැඩය (Torn Paper Jagged Edges) CSS වලින් */
+        .scratch-part.left::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -15px;
+            width: 30px;
+            height: 100%;
+            background-image: linear-gradient(135deg, #000 25%, transparent 25%), 
+                              linear-gradient(225deg, #000 25%, transparent 25%);
+            background-size: 15px 30px;
+            z-index: 2;
+            filter: drop-shadow(5px 0 5px rgba(0,0,0,0.5));
+        }
+
+        .scratch-part.right::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -15px;
+            width: 30px;
+            height: 100%;
+            background-image: linear-gradient(45deg, #000 25%, transparent 25%), 
+                              linear-gradient(315deg, #000 25%, transparent 25%);
+            background-size: 15px 30px;
+            z-index: 2;
+            filter: drop-shadow(-5px 0 5px rgba(0,0,0,0.5));
+        }
+
+        /* දෙපැත්තට ඉරීගෙන යන Animation එක */
+        .scratched .scratch-part.left {
+            transform: translateX(-100%);
+        }
+
+        .scratched .scratch-part.right {
+            transform: translateX(100%);
+        }
+
+        /* ප්‍රීලෝඩරය මුළුමනින්ම මැකී යාම */
+        .preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            transition-delay: 1s;
+        }
+
+        /* =======================================================
+           🌐 2. MAIN WEBPAGE STYLES (වෙබ් පිටුවේ කෝඩ් එක)
+           ======================================================= */
         header {
             background: #ffffff;
             padding: 15px 40px;
@@ -31,306 +169,80 @@
             border-bottom: 1px solid #f0ede6;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .logo-area { display: flex; align-items: center; gap: 12px; }
         .logo-box {
-            width: 45px;
-            height: 45px;
-            background: #000;
-            color: #dfb15b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 8px;
-            text-align: center;
-            border-radius: 6px;
-            line-height: 1.2;
-            text-transform: uppercase;
+            width: 45px; height: 45px; background: #000; color: #dfb15b;
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; font-size: 8px; text-align: center; border-radius: 6px;
+            line-height: 1.2; text-transform: uppercase;
         }
+        .brand-name { font-size: 18px; font-weight: 900; text-transform: uppercase; }
+        .menu-icon { font-size: 28px; cursor: pointer; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { margin-bottom: 60px; }
 
-        .brand-name {
-            font-size: 18px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .menu-icon {
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        /* Main Container Layout - Auto adjusting for PC and Mobile */
-        .container {
-            max-width: 1200px; /* PC එකේ උපරිම පළල */
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section {
-            margin-bottom: 60px;
-        }
-
-        /* --- Flexible Hero Section (PC and Mobile Responsive) --- */
         .hero-block {
-            display: flex;
-            flex-direction: column; /* Mobile වලදී එක යට එක */
-            gap: 30px;
-            align-items: center;
-            background: #fbeee9;
-            padding: 30px;
-            border-radius: 35px;
+            display: flex; flex-direction: column; gap: 30px; align-items: center;
+            background: #fbeee9; padding: 30px; border-radius: 35px;
         }
+        .hero-img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 25px; }
+        .hero-content { text-align: center; }
+        h1 { font-size: 28px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; }
+        p { font-size: 16px; color: #444; margin-bottom: 25px; }
+        .btn { display: inline-block; background-color: #1b4332; color: white; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: bold; }
 
-        .hero-img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 25px;
-        }
+        .grid-layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .card { background: #fbeee9; border-radius: 28px; padding: 15px; text-align: center; }
+        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 22px; margin-bottom: 15px; }
+        .card h3 { font-size: 15px; text-transform: uppercase; }
 
-        .hero-content {
-            text-align: center;
-        }
+        .form-container { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 8px; }
+        input[type="text"], input[type="email"] { width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 6px; }
 
-        h1 {
-            font-size: 28px;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
+        footer { background: #000; color: #fff; padding: 60px 20px; text-align: center; }
+        footer ul { list-style: none; margin-bottom: 35px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        footer ul li a { color: #fff; text-decoration: none; }
+        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icon { width: 35px; height: 35px; background: #222; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; }
 
-        p {
-            font-size: 16px;
-            color: #444;
-            margin-bottom: 25px;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            background-color: #1b4332;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #2d6a4f;
-        }
-
-        /* Responsive Rounded Images for Content */
-        .rounded-img {
-            width: 100%;
-            max-height: 500px;
-            border-radius: 35px;
-            display: block;
-            margin-bottom: 25px;
-            object-fit: cover;
-        }
-
-        /* --- Grid Layout for Cards (Auto switching) --- */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile වලදී පේළියට 1යි */
-            gap: 20px;
-        }
-
-        .card {
-            background: #fbeee9;
-            border-radius: 28px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 22px;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            font-size: 15px;
-            text-transform: uppercase;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-        }
-
-        /* Double Layout Column for Intro Section */
-        .intro-block {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        /* Forms Layout */
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .form-inline {
-            display: flex;
-            gap: 15px;
-        }
-
-        .form-inline .form-group {
-            flex: 1;
-        }
-
-        .form-subtext {
-            font-size: 11px;
-            color: #666;
-            margin-top: 4px;
-        }
-
-        input[type="text"], input[type="email"], select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: #fff;
-            font-size: 15px;
-            color: #111;
-        }
-
-        /* Footer Section */
-        footer {
-            background: #000;
-            color: #fff;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        footer .footer-wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        footer h4 {
-            text-transform: uppercase;
-            font-size: 18px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        footer p {
-            color: #999;
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
-
-        footer ul {
-            list-style: none;
-            margin-bottom: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        footer ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 35px;
-        }
-
-        .social-icon {
-            width: 35px;
-            height: 35px;
-            background: #222;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        /* =======================================================
-           💻 PC/DESKTOP STYLES (Screen size width 768px or above)
-           ======================================================= */
         @media (min-width: 768px) {
-            /* Hero එක PC එකේදී දෙපැත්තට බෙදේ */
-            .hero-block {
-                flex-direction: row;
-                text-align: left;
-                padding: 50px;
-            }
-            .hero-img {
-                width: 50%;
-                max-height: 450px;
-            }
-            .hero-content {
-                width: 50%;
-                text-align: left;
-            }
-            .hero-content h1 {
-                font-size: 36px;
-            }
-
-            /* Intro එක PC එකේදී දෙපැත්තට බෙදේ */
-            .intro-block {
-                flex-direction: row-reverse;
-                align-items: center;
-            }
-            .intro-block .intro-text, .intro-block .rounded-img {
-                width: 50%;
-            }
-
-            /* සයිටින් කාඩ්ස් 7 PC එකේදී පේළියට 3 හෝ 4 බැගින් හැදේ */
-            .grid-layout {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .hero-block { flex-direction: row; text-align: left; padding: 50px; }
+            .hero-img { width: 50%; max-height: 450px; }
+            .hero-content { width: 50%; }
+            .hero-content h1 { font-size: 36px; }
+            .grid-layout { grid-template-columns: repeat(3, 1fr); }
         }
-
         @media (min-width: 1024px) {
-            .grid-layout {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .grid-layout { grid-template-columns: repeat(4, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
+    <!-- 🐆 1. ADVANCED LEOPARD PRELOADER -->
+    <div id="leopard-preloader">
+        <video id="leopard-video" autoplay muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-leopard-walking-in-the-night-41589-large.mp4" type="video/mp4">
+        </video>
+        
+        <!-- මතු වී පෙනෙන සීරීම් පහරවල් 3 -->
+        <div class="claw-marks">
+            <div class="claw-line"></div>
+            <div class="claw-line"></div>
+            <div class="claw-line"></div>
+        </div>
+        
+        <!-- සැබෑ ලෙස ඉරී යන රළු දාර සහිත කළු තිරය -->
+        <div class="scratch-overlay" id="scratch-overlay">
+            <div class="scratch-part left"></div>
+            <div class="scratch-part right"></div>
+        </div>
+    </div>
+
+
+    <!-- 🌐 2. MAIN WEBPAGE CONTENT -->
     <header>
         <div class="logo-area">
             <div class="logo-box">WILD CAT<br>SAFARI</div>
@@ -340,126 +252,34 @@
     </header>
 
     <div class="container">
-        
-        <!-- Section 1: Responsive Hero Cover -->
+        <!-- Section 1: Hero -->
         <div class="section">
             <div class="hero-block">
                 <img src="hero.jpg" alt="Sri Lankan Leopard Cover" class="hero-img">
                 <div class="hero-content">
                     <h1>Discover the Majesty of Sri Lanka's Wild Cats</h1>
-                    <p>Join us on exclusive safaris to witness the elusive Sri Lankan Leopard and the rare Fishing Cat in their untouched natural environments, blending adventure with conservation.</p>
+                    <p>Join us on exclusive safaris to witness the elusive Sri Lankan Leopard and the rare Fishing Cat.</p>
                     <a href="#booking-form" class="btn">Start Your Safari</a>
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: Intro (Side-by-Side on PC) -->
+        <!-- Section 2: Sightings Grid -->
         <div class="section">
-            <div class="intro-block">
-                <img src="leopard.jpg" alt="Leopard Close Up" class="rounded-img">
-                <div class="intro-text">
-                    <h1>Experience the Thrill of Sri Lanka's Wild Cats</h1>
-                    <p>At Wildcat-safari, we are dedicated to connecting wildlife lovers with the breathtaking beauty of Sri Lanka's leopards and fishing cats, fostering conservation through unforgettable safari experiences.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 3: Sightings Grid (Auto Grid Responsive) -->
-        <div class="section">
-            <h1 style="text-align: center; margin-bottom: 10px;">Explore Sri Lanka's Wild: Expert Guides, Top Wildlife Sightings</h1>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px auto;">Witness Yala's incredible wildlife through our lens. From majestic leopards to gentle giants, our expert guides capture the moments that make every safari unforgettable.</p>
-            
+            <h1 style="text-align: center; margin-bottom: 40px;">Top Wildlife Sightings</h1>
             <div class="grid-layout">
-                <!-- Card 1 -->
-                <div class="card">
-                    <img src="deer.jpg" alt="Peaceful Deer Experience">
-                    <h3>Peaceful Deer Experience</h3>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="card">
-                    <img src="leopard.jpg" alt="Majestic Leopard">
-                    <h3>Majestic Leopard</h3>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card">
-                    <img src="elephant.jpg" alt="Elephant Encounters">
-                    <h3>Elephant Encounters</h3>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="card">
-                    <img src="bird.jpg" alt="Bird Watching Paradise">
-                    <h3>Bird Watching Paradise</h3>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="card">
-                    <img src="photography.jpg" alt="Wildlife Photography Tour">
-                    <h3>Wildlife Photography Tour</h3>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="card">
-                    <img src="bear.jpg" alt="Bear Walk">
-                    <h3>Bear Walk</h3>
-                </div>
-
-                <!-- Card 7 -->
-                <div class="card">
-                    <img src="crocodile.jpg" alt="Reptile Watch">
-                    <h3>Reptile Watch</h3>
-                </div>
-
-                <!-- Card 8 -->
-                <div class="card">
-                    <img src="jeep.jpg" alt="Safari Adventure">
-                    <h3>Safari Adventure</h3>
-                </div>
+                <div class="card"><img src="deer.jpg"><h3>Peaceful Deer Experience</h3></div>
+                <div class="card"><img src="leopard.jpg"><h3>Majestic Leopard</h3></div>
+                <div class="card"><img src="elephant.jpg"><h3>Elephant Encounters</h3></div>
+                <div class="card"><img src="bird.jpg"><h3>Bird Watching Paradise</h3></div>
             </div>
         </div>
 
-        <!-- Section 4: Middle Lead Form -->
-        <div class="section" style="background: #fbeee9; padding: 45px 25px; border-radius: 35px;">
-            <div class="form-container">
-                <img src="leopard-cutout.png" alt="Leopard Cutout" style="width: 100%; max-width: 250px; display: block; margin: 0 auto 20px auto;">
-                <form style="text-align: left;">
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <label>Name *</label>
-                            <input type="text" required>
-                            <div class="form-subtext">First</div>
-                        </div>
-                        <div class="form-group" style="margin-top: 27px;">
-                            <input type="text" required>
-                            <div class="form-subtext">Last</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" required>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Section 5: Booking Form -->
+        <!-- Section 3: Booking Form -->
         <div id="booking-form" class="section" style="background: #ffffff; padding: 45px 25px; border-radius: 35px; border: 1px solid #f0ede6;">
             <div class="form-container">
-                <h1 style="font-size: 24px; text-align: center;">Book Your Safari Now...</h1>
-                <p style="text-align: center; font-size: 14px; margin-bottom: 30px;">Reserve your spot on our exclusive safaris with simple steps.</p>
-                
+                <h1 style="font-size: 24px; text-align: center; margin-bottom: 30px;">Book Your Safari Now...</h1>
                 <form>
-                    <div class="form-group">
-                        <label>Select Safari Type</label>
-                        <select>
-                            <option>Yala National Park Safari</option>
-                            <option>Wilpattu National Park Safari</option>
-                            <option>Udawalawe Elephant Safari</option>
-                        </select>
-                    </div>
                     <div class="form-group">
                         <label>Your Name</label>
                         <input type="text" placeholder="Enter your full name">
@@ -468,43 +288,52 @@
                         <label>Your Phone</label>
                         <input type="text" placeholder="Enter your phone number">
                     </div>
-                    <div class="form-group">
-                        <label>Your Email</label>
-                        <input type="email" placeholder="Enter your email address">
-                    </div>
                     <button type="submit" class="btn" style="width: 100%;">Book Safari</button>
                 </form>
             </div>
         </div>
-
     </div>
 
-    <!-- Footer Section -->
     <footer>
         <div class="footer-wrap">
             <h4>Wild Cat Safari</h4>
-            <p>Experience the best wildlife tours in Sri Lanka. Fostering conservation through unforgettable safari experiences.</p>
-            
             <ul>
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Tours</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Gallery</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">Articles</a></li>
             </ul>
-
-            <div class="social-icons">
-                <a href="#" class="social-icon">f</a>
-                <a href="#" class="social-icon">i</a>
-                <a href="#" class="social-icon">yt</a>
-                <a href="#" class="social-icon">tk</a>
-                <a href="#" class="social-icon">wa</a>
-            </div>
-
-            <p style="font-size: 11px; color: #555;">&copy; 2026 Wildcat-safari. All rights reserved.<br>Responsive Edition optimized for Mobile & PC.</p>
         </div>
     </footer>
+
+
+    <!-- =======================================================
+       🎯 3. JAVASCRIPT TIMING & ANIMATION TRIGGER
+       ======================================================= -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById("leopard-preloader");
+            const overlay = document.getElementById("scratch-overlay");
+
+            // 1. තත්පර 3කට පසු දිවියා හූරන සීරීම් පාරවල් (Claw Marks) මතු වේ.
+            setTimeout(() => {
+                preloader.classList.add("show-scratch");
+            }, 3000);
+
+            // 2. තත්පර 3.4කට පසු (සීරීම අවසන් වූ ගමන්) රළු කඩදාසියක් මෙන් තිරය මැදින් ඉරී දෙපැත්තට විවෘත වේ.
+            setTimeout(() => {
+                overlay.classList.add("show-overlay");
+                overlay.classList.add("scratched");
+                preloader.classList.add("preloader-hidden");
+                
+                // 3. Animation එක අවසන් වූ පසු සම්පූර්ණ Preloader එකම Screen එකෙන් අයින් කරයි.
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 1500);
+
+            }, 3400); 
+        });
+    </script>
 
 </body>
 </html>
